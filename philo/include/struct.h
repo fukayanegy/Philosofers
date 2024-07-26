@@ -1,6 +1,8 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
+# include "../lib/malloc_lib/malloc_lib.h"
+
 enum e_status {
 	THINKING = 0,
 	EATING = 1,
@@ -36,6 +38,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	lock;
 	pthread_mutex_t	write;
-}		t_data;
+	t_node			*m_node;
+}					t_data;
 
 #endif

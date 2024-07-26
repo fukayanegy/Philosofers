@@ -11,6 +11,10 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
+	data.m_node = malloc(sizeof(t_node));
+	if (!data.m_node)
+		return (1);
+	malloc_startup(data.m_node);
 	if (convert_input(ac, av, &data))
 		return (1);
 	if (alloc_fork_philo(&data))
@@ -23,5 +27,12 @@ int	main(int ac, char **av)
 		return (1);
 	if (start_eating(&data))
 		return (1);
+	malloc_end(data.m_node);
 	return (0);
+}
+
+__attribute__((destructor))
+static void    destructor(void)
+{
+	system("leaks -q philo");
 }
