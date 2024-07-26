@@ -19,8 +19,9 @@ void	messages(char *str, t_philo *philo)
 	return ;
 }
 
-void	take_forks(t_philo *philo)
+void	take_fork(t_philo *philo)
 {
+	printf("take_fork\n");
 	// pthread_mutex_lock(philo->r_fork);
 	// messages(TAKE_FORKS, philo);
 	// pthread_mutex_lock(philo->l_fork);
@@ -29,8 +30,9 @@ void	take_forks(t_philo *philo)
 	return ;
 }
 
-void	drop_forks(t_philo *philo)
+void	drop_fork(t_philo *philo)
 {
+	printf("drop_fork\n");
 	// pthread_mutex_unlock(philo->l_fork);
 	// pthread_mutex_unlock(philo->r_fork);
 	// messages(SLEEPING, philo);
@@ -39,18 +41,18 @@ void	drop_forks(t_philo *philo)
 	return ;
 }
 
-void	eat(t_philo *philo)
+void	eating(t_philo *philo)
 {
-	// take_forks(philo);
-	// pthread_mutex_lock(&philo->lock);
-	// philo->eating = 1;
-	// philo->time_to_die = get_time() + philo->data->death_time;
-	// messages(EATING, philo);
-	// philo->eat_cont++;
-	// ft_usleep(philo->data->eat_time);
-	// philo->eating = 0;
-	// pthread_mutex_unlock(&philo->lock);
-	// drop_forks(philo);
+	take_forks(philo);
+	pthread_mutex_lock(&philo->lock);
+	philo->eating = 1;
+	philo->time_to_die = get_time() + philo->data->death_time;
+	messages(EATING, philo);
+	philo->eat_cont++;
+	ft_usleep(philo->data->eat_time);
+	philo->eating = 0;
+	pthread_mutex_unlock(&philo->lock);
+	drop_forks(philo);
 	(void)philo;
 	return ;
 }
