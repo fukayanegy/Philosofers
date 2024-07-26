@@ -6,7 +6,7 @@
 /*   By: etakaham <etakaham@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 18:47:03 by etakaham          #+#    #+#             */
-/*   Updated: 2024/07/26 19:57:22 by etakaham         ###   ########.fr       */
+/*   Updated: 2024/07/26 20:13:01 by etakaham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ enum e_status {
 	THINKING,
 	EATING,
 	SLEEPING,
-	DEAD,
+	DIED,
 };
 
 typedef struct s_philo

@@ -6,7 +6,7 @@
 /*   By: etakaham <etakaham@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 18:37:37 by etakaham          #+#    #+#             */
-/*   Updated: 2024/07/26 18:37:37 by etakaham         ###   ########.fr       */
+/*   Updated: 2024/07/26 20:45:00 by etakaham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,23 @@ int	main(int ac, char **av)
 		return (1);
 	malloc_startup(data.m_node);
 	if (convert_input(ac, av, &data))
-		return (1);
+		ft_exit(1, data.m_node);
 	if (alloc_fork_philo(&data))
-		return (1);
+		ft_exit(1, data.m_node);
 	if (link_fork_philo(&data))
-		return (1);
+		ft_exit(1, data.m_node);
 	if (philo_init(&data))
-		return (1);
+		ft_exit(1, data.m_node);
 	if (thread_init(&data))
-		return (1);
+		ft_exit(1, data.m_node);
 	if (start_eating(&data))
-		return (1);
+		ft_exit(1, data.m_node);
 	malloc_end(data.m_node);
 	return (0);
 }
 
 __attribute__((destructor))
-static void    destructor(void)
+static void	destructor(void)
 {
 	system("leaks -q philo");
 }

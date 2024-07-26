@@ -6,7 +6,7 @@
 /*   By: etakaham <etakaham@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 18:47:06 by etakaham          #+#    #+#             */
-/*   Updated: 2024/07/26 19:45:42 by etakaham         ###   ########.fr       */
+/*   Updated: 2024/07/26 20:25:39 by etakaham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@
 int				ft_atoi(const char *nptr);
 unsigned int	ft_get_time(void);
 int				display_status(enum e_status status, t_philo *philo);
+int				msleep(unsigned int mmseconds);
 
 #endif

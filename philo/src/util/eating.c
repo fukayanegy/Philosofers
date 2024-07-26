@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   eating.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: etakaham <etakaham@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/26 20:45:20 by etakaham          #+#    #+#             */
+/*   Updated: 2024/07/26 20:45:21 by etakaham         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/philosopher.h"
 
 static void	take_fork(t_philo *philo)
@@ -13,7 +25,7 @@ static void	drop_fork(t_philo *philo)
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
 	display_status(SLEEPING, philo);
-	usleep(philo->data->time_to_sleep);
+	msleep(philo->data->time_to_sleep);
 }
 
 void	eating(t_philo *philo)
@@ -24,7 +36,7 @@ void	eating(t_philo *philo)
 	philo->dead_line = ft_get_time() + philo->data->time_to_die;
 	display_status(EATING, philo);
 	philo->eat_count++;
-	usleep(philo->data->time_to_eat);
+	msleep(philo->data->time_to_eat);
 	philo->eating = 0;
 	pthread_mutex_unlock(&philo->lock);
 	drop_fork(philo);
