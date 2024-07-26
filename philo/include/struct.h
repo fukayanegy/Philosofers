@@ -6,7 +6,7 @@
 /*   By: etakaham <etakaham@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 18:47:03 by etakaham          #+#    #+#             */
-/*   Updated: 2024/07/26 18:47:04 by etakaham         ###   ########.fr       */
+/*   Updated: 2024/07/26 19:57:22 by etakaham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 # include "../lib/malloc_lib/malloc_lib.h"
 
 enum e_status {
-	THINKING = 0,
-	EATING = 1,
-	SLEEPING = 2,
+	TAKE_FORKS,
+	THINKING,
+	EATING,
+	SLEEPING,
+	DEAD,
 };
 
 typedef struct s_philo

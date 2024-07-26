@@ -6,25 +6,27 @@
 /*   By: etakaham <etakaham@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 18:37:51 by etakaham          #+#    #+#             */
-/*   Updated: 2024/07/26 18:46:34 by etakaham         ###   ########.fr       */
+/*   Updated: 2024/07/26 20:01:30 by etakaham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philosopher.h"
 
-void	*monitor(void *data_pointer)
+void	eating(t_philo *philo);
+
+static void	*monitor(void *data_pointer)
 {
 	printf("start_monitor\n");
 	return (data_pointer);
 }
 
-void	*supervisor(void *philo_pointer)
+static void	*supervisor(void *philo_pointer)
 {
 	printf("supervisor\n");
 	return (philo_pointer);
 }
 
-void	*routine(void *philo_pointer)
+static void	*routine(void *philo_pointer)
 {
 	t_philo	*philo;
 
@@ -35,9 +37,9 @@ void	*routine(void *philo_pointer)
 	while (philo->data->dead == 0)
 	{
 		eating(philo);
-		output(THINKING, philo);
+		display_status(THINKING, philo);
 	}
-	if (pthread_join(philo->t1, NULL))
+	if (pthread_join(philo->thread, NULL))
 		return ((void *)1);
 	return ((void *)0);
 }
