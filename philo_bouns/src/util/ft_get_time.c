@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   thread_init.c                                      :+:      :+:    :+:   */
+/*   ft_get_time.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etakaham <etakaham@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 18:37:20 by etakaham          #+#    #+#             */
-/*   Updated: 2024/08/31 17:33:30 by etakaham         ###   ########.fr       */
+/*   Created: 2024/07/26 18:44:30 by etakaham          #+#    #+#             */
+/*   Updated: 2024/07/26 20:45:40 by etakaham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/philosopher.h"
+#include <sys/time.h>
 
-int	thread_init(t_data *data)
+unsigned int	ft_get_time(void)
 {
-	int	i;
+	struct timeval	tv;
 
-	pthread_mutex_init(&data->write, NULL);
-	pthread_mutex_init(&data->lock, NULL);
-	i = 0;
-	while (i < data->philo_num)
-	{
-		pthread_mutex_init(&data->forks[i], NULL);
-		pthread_mutex_init(&data->philos[i].lock, NULL);
-		i++;
-	}
-	return (0);
+	if (gettimeofday(&tv, NULL))
+		return (0);
+	return ((tv.tv_sec * (unsigned int)1000) + (tv.tv_usec / 1000));
 }

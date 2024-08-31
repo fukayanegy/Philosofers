@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   thread_init.c                                      :+:      :+:    :+:   */
+/*   malloc_end.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: etakaham <etakaham@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 18:37:20 by etakaham          #+#    #+#             */
-/*   Updated: 2024/08/31 17:33:30 by etakaham         ###   ########.fr       */
+/*   Created: 2024/05/26 19:48:17 by etakaham          #+#    #+#             */
+/*   Updated: 2024/05/26 19:48:17 by etakaham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/philosopher.h"
+#include "malloc_lib.h"
 
-int	thread_init(t_data *data)
+int	malloc_end(t_node *node)
 {
-	int	i;
+	t_node	*tmp;
 
-	pthread_mutex_init(&data->write, NULL);
-	pthread_mutex_init(&data->lock, NULL);
-	i = 0;
-	while (i < data->philo_num)
+	while (node)
 	{
-		pthread_mutex_init(&data->forks[i], NULL);
-		pthread_mutex_init(&data->philos[i].lock, NULL);
-		i++;
+		if (node->size != 0 && node->is_free == false)
+		{
+			free(node->ptr);
+		}
+		tmp = node;
+		node = node->next;
+		free(tmp);
 	}
 	return (0);
 }
